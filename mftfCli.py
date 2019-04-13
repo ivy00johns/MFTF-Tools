@@ -17,37 +17,54 @@ testFiles        = []
 start_dir = os.getcwd()
 
 # Folder GREP patterns
-actionGroupPattern = "app/code/Magento/*/Test/Mftf/ActionGroup/*"
-dataPattern        = "app/code/Magento/*/Test/Mftf/Data/*"
-metadataPattern    = "app/code/Magento/*/Test/Mftf/Metadata/*"
-pagePattern        = "app/code/Magento/*/Test/Mftf/Page/*"
-sectionPattern     = "app/code/Magento/*/Test/Mftf/Section/*"
-testPattern        = "app/code/Magento/*/Test/Mftf/Test/*"
+actionGroupPattern1 = "app/code/Magento/*/Test/Mftf/ActionGroup/*"
+actionGroupPattern2 = "dev/tests/acceptance/tests/functional/Magento/FunctionalTest/*/ActionGroup/*"
+
+dataPattern1        = "app/code/Magento/*/Test/Mftf/Data/*"
+dataPattern2        = "dev/tests/acceptance/tests/functional/Magento/FunctionalTest/*/Data/*"
+
+metadataPattern1    = "app/code/Magento/*/Test/Mftf/Metadata/*"
+metadataPattern2    = "dev/tests/acceptance/tests/functional/Magento/FunctionalTest/*/Metadata/*"
+
+pagePattern1        = "app/code/Magento/*/Test/Mftf/Page/*"
+pagePattern2        = "dev/tests/acceptance/tests/functional/Magento/FunctionalTest/*/Page/*"
+
+sectionPattern1     = "app/code/Magento/*/Test/Mftf/Section/*"
+sectionPattern2     = "dev/tests/acceptance/tests/functional/Magento/FunctionalTest/*/Section/*"
+
+testPattern1        = "app/code/Magento/*/Test/Mftf/Test/*"
+testPattern2        = "dev/tests/acceptance/tests/functional/Magento/FunctionalTest/*/Test/*"
 
 # Crawl the current directory for XML files.
 def crawlForActionGroupXmlFiles():
     for dir,_,_ in os.walk(start_dir):
-        actionGroupFiles.extend(glob(os.path.join(dir,actionGroupPattern)))
+        actionGroupFiles.extend(glob(os.path.join(dir,actionGroupPattern1)))
+        actionGroupFiles.extend(glob(os.path.join(dir,actionGroupPattern2)))
 
 def crawlForDataXmlFiles():
     for dir,_,_ in os.walk(start_dir):
-        dataFiles.extend(glob(os.path.join(dir,dataPattern)))
+        dataFiles.extend(glob(os.path.join(dir,dataPattern1)))
+        dataFiles.extend(glob(os.path.join(dir,dataPattern2)))
 
 def crawlForMetadataXmlFiles():
     for dir,_,_ in os.walk(start_dir):
-        metadataFiles.extend(glob(os.path.join(dir,metadataPattern)))
+        metadataFiles.extend(glob(os.path.join(dir,metadataPattern1)))
+        metadataFiles.extend(glob(os.path.join(dir,metadataPattern2)))
 
 def crawlForPageXmlFiles():
      for dir,_,_ in os.walk(start_dir):
-         pageFiles.extend(glob(os.path.join(dir,pagePattern)))
+         pageFiles.extend(glob(os.path.join(dir,pagePattern1)))
+         pageFiles.extend(glob(os.path.join(dir,pagePattern2)))
 
 def crawlForSectionXmlFiles():
     for dir,_,_ in os.walk(start_dir):
-        sectionFiles.extend(glob(os.path.join(dir,sectionPattern)))
+        sectionFiles.extend(glob(os.path.join(dir,sectionPattern1)))
+        sectionFiles.extend(glob(os.path.join(dir,sectionPattern2)))
 
 def crawlForTestXmlFiles():
     for dir,_,_ in os.walk(start_dir):
-        testFiles.extend(glob(os.path.join(dir,testPattern)))
+        testFiles.extend(glob(os.path.join(dir,testPattern1)))
+        testFiles.extend(glob(os.path.join(dir,testPattern2)))
 
 def crawlForAllXmlFiles():
     crawlForActionGroupXmlFiles()
@@ -287,7 +304,8 @@ if (whatDoYouWantToDoAnswers.get("user_action") == "Search"):
         results = []
         results.append([i for i in full_lists_of_pages[0] if searchTerm in i])
         results.append([i for i in full_lists_of_pages[1] if searchTerm in i])
-        printResults(results)
+        printResults(results[0])
+        printResults(results[1])
     elif (searchType == "Sections"):
         full_list_of_sections = searchSections()
         results = [i for i in full_list_of_sections if searchTerm in i]
@@ -355,7 +373,7 @@ else:
         elif (duplicateType == "Data Entities"):
             duplicates = searchDatas()
         elif (duplicateType == "Pages"):
-            duplicates = searchPages()[0]
+            duplicates = (searchPages()[0])
         elif (duplicateType == "Sections"):
             duplicates = searchSections()
         elif (duplicateType == "Tests"):
@@ -372,7 +390,7 @@ else:
         elif (listByNameType == "Data Entites"):
             printResults(searchDatas())
         elif (listByNameType == "Pages"):
-            printResults(searchPages())
+            printResults(searchPages()[0])
         elif (listByNameType == "Sections"):
             printResults(searchSections())
         elif (listByNameType == "Tests"):
