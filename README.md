@@ -33,3 +33,5 @@ python3 [MFTF_CLI_UTILITIES_DIRECTORY]/mftfCli.py
 1. Add progress bars.
 2. Add counters to the "List Duplicate" functions.
 3. Add support for CLI flags.
+4. Add "keys" to the Question options.
+5. Add "element" search functions.
