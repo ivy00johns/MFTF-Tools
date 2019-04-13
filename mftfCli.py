@@ -110,6 +110,24 @@ def searchDatas():
 def searchMetadatas():
     crawlForMetadataXmlFiles()
 
+    metadataNames = []
+    metadataUrls  = []
+    for metadataFile in metadataFiles:
+        currentMetadataFile = xml.dom.minidom.parse(metadataFile)
+        metadataNodes = currentMetadataFile.getElementsByTagName("operation")
+        for metadataNode in metadataNodes:
+            name = metadataNode.getAttribute("name")
+            url  = metadataNode.getAttribute("url")
+            metadataNames.append(name)
+            metadataUrls.append(url)
+
+    metadataNames.sort(key=str.lower)
+    metadataUrls.sort(key=str.lower)
+
+    cleanedUpNamesList = [str(r) for r in metadataNames]
+    cleanedUpUrlsList  = [str(r) for r in metadataUrls]
+    return [cleanedUpNamesList, cleanedUpUrlsList]
+
 def searchPages():
     crawlForPageXmlFiles()
 
@@ -120,7 +138,7 @@ def searchPages():
         pageNodes = currentPageFile.getElementsByTagName("page")
         for pageNode in pageNodes:
             name = pageNode.getAttribute("name")
-            url = pageNode.getAttribute("url")
+            url  = pageNode.getAttribute("url")
             pageNames.append(name)
             pageUrls.append(url)
 
@@ -205,7 +223,7 @@ whatDoYouWantToSearchFor = {
         'Everything',
         'Action Groups',
         'Data Entities',
-        'Metadata',
+        'Metadatas',
         'Pages',
         'Sections',
         'Tests'
@@ -237,7 +255,7 @@ whatDoYouWantToCount = {
         'Everything',
         'Action Groups',
         'Data Entities',
-        'Metadata',
+        'Metadatas',
         'Pages',
         'Sections',
         'Tests'
@@ -252,7 +270,7 @@ whatDoYouWantToSeeDuplicatesOf = {
         'Everything',
         'Action Groups',
         'Data Entities',
-        'Metadata',
+        'Metadatas',
         'Pages',
         'Sections',
         'Tests'
@@ -297,8 +315,13 @@ if (whatDoYouWantToDoAnswers.get("user_action") == "Search"):
         full_list_of_datas = searchDatas()
         results = [i for i in full_list_of_datas if searchTerm in i]
         printResults(results)
-    elif (searchType == "Metadata"):
-        pass
+    elif (searchType == "Metadatas"):
+        full_list_of_metadatas = searchMetadatas()
+        results = []
+        results.append([i for i in full_list_of_metadatas[0] if searchTerm in i])
+        results.append([i for i in full_list_of_metadatas[1] if searchTerm in i])
+        printResults(results[0])
+        printResults(results[1])
     elif (searchType == "Pages"):
         full_lists_of_pages = searchPages()
         results = []
@@ -316,8 +339,8 @@ if (whatDoYouWantToDoAnswers.get("user_action") == "Search"):
         printResults(results)
     elif (searchType == "Everything"):
         pass
-        full_list_of_everything = searchEverything()
-        print (full_list_of_everything)
+        # full_list_of_everything = searchEverything()
+        # print (full_list_of_everything)
 else:
     whatDoYouWantToListAnswers = prompt(whatDoYouWantToList)
 
@@ -331,13 +354,15 @@ else:
         if (countAnswer == "Everything"):
             full_list_of_action_groups  = len(searchActionGroups())
             full_list_of_datas          = len(searchDatas())
+            full_list_of_metadatas      = len(searchMetadatas()[0])
             full_lists_of_pages         = len(searchPages()[0])
             full_list_of_sections       = len(searchSections())
             full_list_of_tests          = len(searchTests())
             
-            nodeCounts = '''\n Action Group count: {actionGroup} \n Data count:         {datas} \n Page count:         {pages} \n Section count:      {sections} \n Test count:         {tests}\
+            nodeCounts = '''\n Action Group count: {actionGroup} \n Data count:         {datas} \n Metadata count:     {metadatas} \n Page count:         {pages} \n Section count:      {sections} \n Test count:         {tests}\
                          '''.format(actionGroup=full_list_of_action_groups,
                                     datas=full_list_of_datas,
+                                    metadatas=full_list_of_metadatas,
                                     pages=full_lists_of_pages,
                                     sections=full_list_of_sections,
                                     tests=full_list_of_tests)
@@ -349,6 +374,10 @@ else:
             full_list_of_datas = len(searchDatas())
             nodeCounts = '''\n Data count: {datas} \
                          '''.format(datas=full_list_of_datas)
+        elif (countAnswer == "Metadatas"):
+            full_list_of_metadatas = len(searchMetadatas()[0])
+            nodeCounts = '''\n Metadata count: {metadatas} \
+                         '''.format(metadatas=full_list_of_metadatas)
         elif (countAnswer == "Pages"):
             full_lists_of_pages = len(searchPages()[0])
             nodeCounts = '''\n Page count: {pages} \
@@ -372,6 +401,8 @@ else:
             duplicates = searchActionGroups()
         elif (duplicateType == "Data Entities"):
             duplicates = searchDatas()
+        elif (duplicateType == "Metadatas"):
+            duplicates = (searchMetadatas()[0])
         elif (duplicateType == "Pages"):
             duplicates = (searchPages()[0])
         elif (duplicateType == "Sections"):
@@ -387,8 +418,10 @@ else:
 
         if (listByNameType == "Action Groups"):
             printResults(searchActionGroups())
-        elif (listByNameType == "Data Entites"):
+        elif (listByNameType == "Data Entities"):
             printResults(searchDatas())
+        elif (listByNameType == "Metadatas"):
+            printResults(searchMetadatas()[0])
         elif (listByNameType == "Pages"):
             printResults(searchPages()[0])
         elif (listByNameType == "Sections"):
