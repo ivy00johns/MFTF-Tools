@@ -11,6 +11,6 @@ Prototype of my custom MFTF CLI utilities.
 python3 mftfCli.py
 ```
 
-## Know Issues
+## Known Issues
 1. The Search functionality is case-sensitive currently.
 2. The Metadata functions are not complete at this time.
