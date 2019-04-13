@@ -14,8 +14,7 @@ pageFiles        = []
 sectionFiles     = []
 testFiles        = []
 
-# start_dir = os.getcwd()
-start_dir = "/Users/stennett/GitHub/magento2ce/"
+start_dir = os.getcwd()
 
 # Folder GREP patterns
 actionGroupPattern = "app/code/Magento/*/Test/Mftf/ActionGroup/*"
