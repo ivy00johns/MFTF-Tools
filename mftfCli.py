@@ -206,89 +206,89 @@ def findDuplicates(listOfItems):
 
 # Questions for the User and what they want to do.
 whatDoYouWantToDo = {
-    'type': 'list',
-    'name': 'user_action',
-    'message': 'What do you want to do?',
-    'choices': [
-        'Search',
-        'List'
+    "type": "list",
+    "name": "user_action",
+    "message": "What do you want to do?",
+    "choices": [
+        "Search",
+        "List"
     ]
 }
 
 whatDoYouWantToSearchFor = {
-    'type': 'list',
-    'name': 'search_for',
-    'message': 'What are you searching for?',
-    'choices': [
-        'Everything',
-        'Action Groups',
-        'Data Entities',
-        'Metadatas',
-        'Pages',
-        'Sections',
-        'Tests'
+    "type": "list",
+    "name": "search_for",
+    "message": "What are you searching for?",
+    "choices": [
+        "Everything",
+        "Action Groups",
+        "Data Entities",
+        "Metadatas",
+        "Pages",
+        "Sections",
+        "Tests"
     ]
 }
 
 whatDoYouWantToSearchWith = {
-    'type': 'input',
-    'name': 'search_term',
-    'message': 'What term do you want to search for?'
+    "type": "input",
+    "name": "search_term",
+    "message": "What term do you want to search for?"
 }
 
 whatDoYouWantToList = {
-    'type': 'list',
-    'name': 'list_type',
-    'message': 'What do you want to loist?',
-    'choices': [
-        'Node Counts',
-        'Duplicate Nodes',
-        'List of Names'
+    "type": "list",
+    "name": "list_type",
+    "message": "What do you want to loist?",
+    "choices": [
+        "Node Counts",
+        "Duplicate Nodes",
+        "List of Names"
     ]
 }
 
 whatDoYouWantToCount = {
-    'type': 'list',
-    'name': 'count_type',
-    'message': 'What do you want to count?',
-    'choices': [
-        'Everything',
-        'Action Groups',
-        'Data Entities',
-        'Metadatas',
-        'Pages',
-        'Sections',
-        'Tests'
+    "type": "list",
+    "name": "count_type",
+    "message": "What do you want to count?",
+    "choices": [
+        "Everything",
+        "Action Groups",
+        "Data Entities",
+        "Metadatas",
+        "Pages",
+        "Sections",
+        "Tests"
     ]
 }
 
 whatDoYouWantToSeeDuplicatesOf = {
-    'type': 'list',
-    'name': 'duplicate_type',
-    'message': 'What do you want to see duplicates of?',
-    'choices': [
-        'Everything',
-        'Action Groups',
-        'Data Entities',
-        'Metadatas',
-        'Pages',
-        'Sections',
-        'Tests'
+    "type": "list",
+    "name": "duplicate_type",
+    "message": "What do you want to see duplicates of?",
+    "choices": [
+        "Everything",
+        "Action Groups",
+        "Data Entities",
+        "Metadatas",
+        "Pages",
+        "Sections",
+        "Tests"
     ]
 }
 
 whatDoYouWantToListByName = {
-    'type': 'list',
-    'name': 'list_name_type',
-    'message': 'What list do you want to see?',
-    'choices': [
-        'Everything',
-        'Action Groups',
-        'Data Entities',
-        'Metadatas',
-        'Pages',
-        'Sections',
-        'Tests'
+    "type": "list",
+    "name": "list_name_type",
+    "message": "What list do you want to see?",
+    "choices": [
+        "Everything",
+        "Action Groups",
+        "Data Entities",
+        "Metadatas",
+        "Pages",
+        "Sections",
+        "Tests"
     ]
 }
 
@@ -339,8 +339,7 @@ if (whatDoYouWantToDoAnswers.get("user_action") == "Search"):
         printResults(results)
     elif (searchType == "Everything"):
         pass
-        # full_list_of_everything = searchEverything()
-        # print (full_list_of_everything)
+        
 else:
     whatDoYouWantToListAnswers = prompt(whatDoYouWantToList)
 
