@@ -1,7 +1,10 @@
 # MFTF-CLI-Utilities
 
 ## Description
-Prototype of my custom MFTF CLI utilities.
+1. Prototype of my custom MFTF CLI utilities.
+2. PLEASE NOTE: 
+    * This is my 1st Python project so I apologize in advance for any horrendous code that you may find.
+    * This is a WIP with a lot of improvements planend.
 
 ## Dependencies
 * Python 3
@@ -35,3 +38,4 @@ python3 [MFTF_CLI_UTILITIES_DIRECTORY]/mftfCli.py
 3. Add support for CLI flags.
 4. Add "keys" to the Question options.
 5. Add "element" search functions.
+6. Add Unit Tests.
