@@ -78,18 +78,24 @@ def crawlForAllXmlFiles():
 def searchActionGroups():
     crawlForActionGroupXmlFiles()
 
-    actionGroupNames = []
+    actionGroupNames   = []
+    actionGroupExtends = []
     for actionGroupFile in actionGroupFiles:
         currentActionGroup = xml.dom.minidom.parse(actionGroupFile)
         actionGroupNodes = currentActionGroup.getElementsByTagName("actionGroup")
         for actionGroup in actionGroupNodes:
-            name = actionGroup.getAttribute("name")
+            name    = actionGroup.getAttribute("name")
+            extends = actionGroup.getAttribute("extends")
             actionGroupNames.append(name)
+            actionGroupExtends.append(extends)
 
     actionGroupNames.sort(key=str.lower)
+    actionGroupExtends.sort(key=str.lower)
 
-    cleanedUpActionGroupList = [str(r) for r in actionGroupNames]
-    return cleanedUpActionGroupList
+    cleanedUpActionGroupNamesList = [str(r) for r in actionGroupNames]
+    cleanedUpActionGroupExtendsList = [str(r) for r in actionGroupExtends]
+
+    return [cleanedUpActionGroupNamesList, cleanedUpActionGroupExtendsList]
 
 def searchDatas():
     crawlForDataXmlFiles()
@@ -230,6 +236,69 @@ whatDoYouWantToSearchFor = {
     ]
 }
 
+# Search by Attribute Questions
+whatActionGroupAttributeDoYouWantToSearchFor = {
+    "type": "list",
+    "name": "search_for_attribute",
+    "message": "Which Action Group attribute are you searching for?",
+    "choices": [
+        "Name",
+        "Extends"
+    ]
+}
+
+whatDataEntityAttributeDoYouWantToSearchFor = {
+    "type": "list",
+    "name": "search_for_attribute",
+    "message": "Which Data Entities attribute are you searching for?",
+    "choices": [
+        "Name",
+        "Extends"
+    ]
+}
+
+whatMetadataAttributeDoYouWantToSearchFor = {
+    "type": "list",
+    "name": "search_for_attribute",
+    "message": "Which Metadata attribute are you searching for?",
+    "choices": [
+        "Name",
+        "Url",
+        "Extends"
+    ]
+}
+
+whatPageAttributeDoYouWantToSearchFor = {
+    "type": "list",
+    "name": "search_for_attribute",
+    "message": "Which Page attribute are you searching for?",
+    "choices": [
+        "Name",
+        "Url",
+        "Extends"
+    ]
+}
+
+whatSectionAttributeDoYouWantToSearchFor = {
+    "type": "list",
+    "name": "search_for_attribute",
+    "message": "Which Section attribute are you searching for?",
+    "choices": [
+        "Name",
+        "Extends"
+    ]
+}
+
+whatTestAttributeDoYouWantToSearchFor = {
+    "type": "list",
+    "name": "search_for_attribute",
+    "message": "Which Test attribute are you searching for?",
+    "choices": [
+        "Name",
+        "Extends"
+    ]
+}
+
 whatDoYouWantToSearchWith = {
     "type": "input",
     "name": "search_term",
@@ -309,7 +378,7 @@ if (whatDoYouWantToDoAnswers.get("user_action") == "Search"):
 
     if (searchType == "Action Groups"):
         full_list_of_action_groups = searchActionGroups()
-        results = [i for i in full_list_of_action_groups if searchTerm in i]
+        results = [i for i in full_list_of_action_groups[0] if searchTerm in i]
         printResults(results)
     elif (searchType == "Data Entities"):
         full_list_of_datas = searchDatas()
@@ -351,7 +420,7 @@ else:
         nodeCount = None
 
         if (countAnswer == "Everything"):
-            full_list_of_action_groups  = len(searchActionGroups())
+            full_list_of_action_groups  = len(searchActionGroups()[0])
             full_list_of_datas          = len(searchDatas())
             full_list_of_metadatas      = len(searchMetadatas()[0])
             full_lists_of_pages         = len(searchPages()[0])
@@ -366,7 +435,7 @@ else:
                                     sections=full_list_of_sections,
                                     tests=full_list_of_tests)
         elif (countAnswer == "Action Groups"):
-            full_list_of_action_groups = len(searchActionGroups())
+            full_list_of_action_groups = len(searchActionGroups()[0])
             nodeCounts = '''\n Action Group count: {actionGroup} \
                          '''.format(actionGroup=full_list_of_action_groups)
         elif (countAnswer == "Data Entities"):
@@ -397,7 +466,7 @@ else:
         duplicates = None
 
         if (duplicateType == "Action Groups"):
-            duplicates = searchActionGroups()
+            duplicates = (searchActionGroups()[0])
         elif (duplicateType == "Data Entities"):
             duplicates = searchDatas()
         elif (duplicateType == "Metadatas"):
@@ -416,7 +485,7 @@ else:
         duplicates = None
 
         if (listByNameType == "Action Groups"):
-            printResults(searchActionGroups())
+            printResults(searchActionGroups()[0])
         elif (listByNameType == "Data Entities"):
             printResults(searchDatas())
         elif (listByNameType == "Metadatas"):
