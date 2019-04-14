@@ -6,7 +6,7 @@ from collections import Counter
 from glob import glob
 from PyInquirer import prompt, print_json
 
-#  File Path Variables
+# File Path Variables
 actionGroupFiles = []
 dataFiles        = []
 metadataFiles    = []
@@ -35,36 +35,56 @@ sectionPattern2     = "dev/tests/acceptance/tests/functional/Magento/FunctionalT
 testPattern1        = "app/code/Magento/*/Test/Mftf/Test/*"
 testPattern2        = "dev/tests/acceptance/tests/functional/Magento/FunctionalTest/*/Test/*"
 
+# Custom Functions
+def printResults(listOfItems):
+    print ("")
+    for item in listOfItems:
+        print (item)
+
+def findDuplicates(listOfItems):
+    nodeCounts = collections.Counter(listOfItems)
+    duplicatesList = []
+
+    for nodeCount in nodeCounts:
+        if (nodeCounts[nodeCount] > 1):
+            duplicatesList.append([nodeCount,nodeCounts[nodeCount]])
+
+    return duplicatesList
+
+def printDuplicates(listOfDuplicates):    
+    for duplicate in listOfDuplicates:
+        message = '''{name}: {count} \
+                  '''.format(name=duplicate[0],count=duplicate[1])
+        print (message)
+
 # Crawl the current directory for XML files.
-def crawlForActionGroupXmlFiles():
+def crawlForFilesWithProvidedPattern(files, crawlPattern):
     for dir,_,_ in os.walk(start_dir):
-        actionGroupFiles.extend(glob(os.path.join(dir,actionGroupPattern1)))
-        actionGroupFiles.extend(glob(os.path.join(dir,actionGroupPattern2)))
+        files.extend(glob(os.path.join(dir,crawlPattern)))
+
+def crawlForActionGroupXmlFiles():
+    crawlForFilesWithProvidedPattern(actionGroupFiles, actionGroupPattern1)
+    crawlForFilesWithProvidedPattern(actionGroupFiles, actionGroupPattern2)
 
 def crawlForDataXmlFiles():
-    for dir,_,_ in os.walk(start_dir):
-        dataFiles.extend(glob(os.path.join(dir,dataPattern1)))
-        dataFiles.extend(glob(os.path.join(dir,dataPattern2)))
+    crawlForFilesWithProvidedPattern(dataFiles, dataPattern1)
+    crawlForFilesWithProvidedPattern(dataFiles, dataPattern2)
 
 def crawlForMetadataXmlFiles():
-    for dir,_,_ in os.walk(start_dir):
-        metadataFiles.extend(glob(os.path.join(dir,metadataPattern1)))
-        metadataFiles.extend(glob(os.path.join(dir,metadataPattern2)))
+    crawlForFilesWithProvidedPattern(metadataFiles, metadataPattern1)
+    crawlForFilesWithProvidedPattern(metadataFiles, metadataPattern2)
 
 def crawlForPageXmlFiles():
-     for dir,_,_ in os.walk(start_dir):
-         pageFiles.extend(glob(os.path.join(dir,pagePattern1)))
-         pageFiles.extend(glob(os.path.join(dir,pagePattern2)))
+    crawlForFilesWithProvidedPattern(pageFiles, pagePattern1)
+    crawlForFilesWithProvidedPattern(pageFiles, pagePattern2)
 
 def crawlForSectionXmlFiles():
-    for dir,_,_ in os.walk(start_dir):
-        sectionFiles.extend(glob(os.path.join(dir,sectionPattern1)))
-        sectionFiles.extend(glob(os.path.join(dir,sectionPattern2)))
+    crawlForFilesWithProvidedPattern(sectionFiles, sectionPattern1)
+    crawlForFilesWithProvidedPattern(sectionFiles, sectionPattern2)
 
 def crawlForTestXmlFiles():
-    for dir,_,_ in os.walk(start_dir):
-        testFiles.extend(glob(os.path.join(dir,testPattern1)))
-        testFiles.extend(glob(os.path.join(dir,testPattern2)))
+    crawlForFilesWithProvidedPattern(testFiles, testPattern1)
+    crawlForFilesWithProvidedPattern(testFiles, testPattern2)
 
 def crawlForAllXmlFiles():
     crawlForActionGroupXmlFiles()
@@ -200,15 +220,6 @@ def searchEverything():
     everything.append(searchTests())
 
     return everything
-
-# Custom Functions
-def printResults(listOfItems):
-    print ("")
-    for item in listOfItems:
-        print (item)
-
-def findDuplicates(listOfItems):
-    return [item for item, count in collections.Counter(listOfItems).items() if count > 1]
 
 # Questions for the User and what they want to do.
 whatDoYouWantToDo = {
@@ -420,12 +431,12 @@ else:
         nodeCount = None
 
         if (countAnswer == "Everything"):
-            full_list_of_action_groups  = len(searchActionGroups()[0])
-            full_list_of_datas          = len(searchDatas())
-            full_list_of_metadatas      = len(searchMetadatas()[0])
-            full_lists_of_pages         = len(searchPages()[0])
-            full_list_of_sections       = len(searchSections())
-            full_list_of_tests          = len(searchTests())
+            full_list_of_action_groups = len(searchActionGroups()[0])
+            full_list_of_datas         = len(searchDatas())
+            full_list_of_metadatas     = len(searchMetadatas()[0])
+            full_lists_of_pages        = len(searchPages()[0])
+            full_list_of_sections      = len(searchSections())
+            full_list_of_tests         = len(searchTests())
             
             nodeCounts = '''\n Action Group count: {actionGroup} \n Data count:         {datas} \n Metadata count:     {metadatas} \n Page count:         {pages} \n Section count:      {sections} \n Test count:         {tests}\
                          '''.format(actionGroup=full_list_of_action_groups,
@@ -478,7 +489,7 @@ else:
         elif (duplicateType == "Tests"):
             duplicates = searchTests()
 
-        printResults(findDuplicates(duplicates))
+        printDuplicates(findDuplicates(duplicates))
     else:
         whatDoYouWantToListByNameAnswers = prompt(whatDoYouWantToListByName)
         listByNameType = whatDoYouWantToListByNameAnswers.get("list_name_type")
