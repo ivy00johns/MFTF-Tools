@@ -61,10 +61,25 @@
 6. Add Unit Tests.
 7. Add Progress Bars.
 8. Add "Display" specific node.
-9. Add "Open in Editor".
+9. Add "Open in Editor":
+    * Nano, eMac, Sublime, PHPStorm, VS Code, etc...
 10. ~~Rename the Utils to make them less redundent.~~ (DONE)
 11. Add addtional message wrappers (i.e. "Start Of"/"End Of"/"Counts").
 12. Add option for displaying XML file pathes.
 13. ~~Add ```#!/usr/bin/env python3``` to scripts.~~
 14. Try to make compatible with python 2.
 15. Disable "Everything" only in areas where it's not availabe.
+16. Add "File Path" search functions:
+    * Find file pathes
+    * Display:Absolute/Relative Pathes
+17. Add "verbose" flag.
+18. List entity Attributes.
+19. Search for Custom Attributes:
+    * Node Name (```<test/>```)
+    * Child-Node Name (```<click/>```)
+    * Attr Name (```name=```)
+20. Add "print" functions for, by name:
+    * Full XML Page - `print`
+    * Full XML Node - `print`
+    * Full File Path - `print`
+    * Relative File Path - `print`
