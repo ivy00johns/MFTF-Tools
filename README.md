@@ -33,10 +33,17 @@ python3 [MFTF_CLI_UTILITIES_DIRECTORY]/mftfCli.py
 3. ~~The Search functions for all "Metadata" items are not complete at this time.~~ (FIXED)
 
 ### TODO
-1. Add progress bars.
-2. Add counters to the "List Duplicate" functions.
+1. Add Progress bars.
+2. ~~Add counters to the "List Duplicate" functions.~~ (ADDED)
 3. Add support for CLI flags.
-4. Add "keys" to the Question options.
+4. ~~Add "keys" to the Question options.~~ (ADDED)
 5. Add "element" search functions.
 6. Add Unit Tests.
 7. Add Progress Bars.
+8. Add "Display" specific node.
+9. Add "Open in Editor".
+10. Rename the Utils to make them less redundent.
+11. Add addtional message wrappers (i.e. "Start Of"/"End Of"/"Counts").
+12. Add option for displaying XML file pathes. 
+13. Add #!/bin/python3 to scripts.
+14. Try to make compatible with python 2.
