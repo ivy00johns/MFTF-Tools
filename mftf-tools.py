@@ -1,13 +1,9 @@
 from __future__ import print_function, unicode_literals
-import os
-import xml.dom.minidom
 from PyInquirer import prompt, print_json
-from examples import custom_style_2
-from Utils import findUtils
-from Utils import printUtils
-from Utils import search
-from Utils import xmlCrawlers
-from Utils import questions
+from Utils import _find
+from Utils import _print
+from Utils import _search
+from Utils import _questions
 
 # File Path Variables
 actionGroupFiles = []
@@ -17,87 +13,64 @@ pageFiles        = []
 sectionFiles     = []
 testFiles        = []
 
-# Custom Question Functions
-def askTheQuestionPrintTheAnswers(question):
-    whichEntityAttributesAnswers  = prompt(question, style=custom_style_2)
-    whatTermAreYouSearchingWithAnswers = prompt(questions.whatTermAreYouSearchingWith)
-
-    fullSearchResults = search.searchActionGroups()
-    searchAttributes  = whichEntityAttributesAnswers["attributes"]
-    searchTerm        = whatTermAreYouSearchingWithAnswers["search_term"]
-
-    results = search.searchFullSearchResultsByAttributes(fullSearchResults, searchAttributes, searchTerm)
-    printUtils.printSearchResultsBySearchAttribute(results)
-
-def printTheNodeCounts(entityList, title):
-    entityCount = len(entityList["name"])
-
-    message = '''\n {title} count: {count} \
-              '''.format(title=title,count=entityCount)
-    print (message)
-
-def findAndPrintDuplicates(entityList):
-    listOfDuplicates = findUtils.findDuplicates(entityList)
-    printUtils.printDuplicates(listOfDuplicates)
-
-#### Ask the questions ####
-#
+####   Ask the Questions   ####
+###############################
 ## Ask the Starter Question ##
-whatDoYouWantToDoAnswers = prompt(questions.whatDoYouWantToDo)
+whatDoYouWantToDoAnswers = prompt(_questions.whatDoYouWantToDo)
 
 # Branching logic based on the answer to the Starter Question.
 if (whatDoYouWantToDoAnswers["user_action"] == "search"):
-    whatAreYouSearchingForAnswers = prompt(questions.whatAreYouSearchingFor)
+    whatAreYouSearchingForAnswers = prompt(_questions.whatAreYouSearchingFor)
     entityType = whatAreYouSearchingForAnswers["searching_for"]
 
     if (entityType == "action_group"):
-        askTheQuestionPrintTheAnswers(questions.whichActionGroupAttributes)
+        _print.askTheQuestionPrintTheAnswers(_questions.whichActionGroupAttributes)
     elif (entityType == "data"):
-        askTheQuestionPrintTheAnswers(questions.whichDataEntityAttributes)
+        _print.askTheQuestionPrintTheAnswers(_questions.whichDataEntityAttributes)
     elif (entityType == "metadata"):
-        askTheQuestionPrintTheAnswers(questions.whichMetadataAttributes)
+        _print.askTheQuestionPrintTheAnswers(_questions.whichMetadataAttributes)
     elif (entityType == "page"):
-        askTheQuestionPrintTheAnswers(questions.whichPageAttributes)
+        _print.askTheQuestionPrintTheAnswers(_questions.whichPageAttributes)
     elif (entityType == "section"):
-        askTheQuestionPrintTheAnswers(questions.whichSectionAttributes)
+        _print.askTheQuestionPrintTheAnswers(_questions.whichSectionAttributes)
     elif (entityType == "test"):
-        askTheQuestionPrintTheAnswers(questions.whichTestAttributes)
+        _print.askTheQuestionPrintTheAnswers(_questions.whichTestAttributes)
     elif (entityType == "everything"):
-        printUtils.printTBD()
+        _print.printTBD()
         pass
 
 elif (whatDoYouWantToDoAnswers["user_action"] == "list"):
-    whatDoYouWantToListAnswers = prompt(questions.whatDoYouWantToList)
+    whatDoYouWantToListAnswers = prompt(_questions.whatDoYouWantToList)
 
     if (whatDoYouWantToListAnswers["list_type"] == "nodes"):
-        whichCountsDoYouWantToSeeAnswers = prompt(questions.whichCountsDoYouWantToSee)
+        whichCountsDoYouWantToSeeAnswers = prompt(_questions.whichCountsDoYouWantToSee)
         countType = whichCountsDoYouWantToSeeAnswers["count_type"]
 
         if (countType == "action_group"):
-            actionGroupsList = search.searchActionGroups()
-            printTheNodeCounts(actionGroupsList, "Action Group")
+            actionGroupsList = _search.actionGroups()
+            _print.nodeCounts(actionGroupsList, "Action Group")
         elif (countType == "data"):
-            datasList = search.searchDatas()
-            printTheNodeCounts(datasList, "Data")
+            datasList = _search.datas()
+            _print.nodeCounts(datasList, "Data")
         elif (countType == "metadata"):
-            metadataEntitiesList = search.searchMetadatas()
-            printTheNodeCounts(metadataEntitiesList, "Metadata")
+            metadataEntitiesList = _search.metadatas()
+            _print.nodeCounts(metadataEntitiesList, "Metadata")
         elif (countType == "page"):
-            pagesList = search.searchPages()
-            printTheNodeCounts(pagesList, "Page")
+            pagesList = _search.pages()
+            _print.nodeCounts(pagesList, "Page")
         elif (countType == "section"):
-            sectionsList = search.searchSections()
-            printTheNodeCounts(sectionsList, "Section")
+            sectionsList = _search.sections()
+            _print.nodeCounts(sectionsList, "Section")
         elif (countType == "test"):
-            testsList = search.searchTests()
-            printTheNodeCounts(testsList, "Test")
+            testsList = _search.tests()
+            _print.nodeCounts(testsList, "Test")
         elif (countType == "everything"):
-            actionGroupsCount = len((search.searchActionGroups())["name"])
-            datasCount        = len((search.searchDatas())["name"])
-            metadatasCount    = len((search.searchMetadatas())["name"])
-            pagesCount        = len((search.searchPages())["name"])
-            sectionsCount     = len((search.searchSections())["name"])
-            testsCount        = len((search.searchTests())["name"])
+            actionGroupsCount = len((_search.actionGroups())["name"])
+            datasCount        = len((_search.datas())["name"])
+            metadatasCount    = len((_search.metadatas())["name"])
+            pagesCount        = len((_search.pages())["name"])
+            sectionsCount     = len((_search.sections())["name"])
+            testsCount        = len((_search.tests())["name"])
 
             message = '''\n Action Group count: {actionGroup} \n Data count:         {datas} \n Metadata count:     {metadatas} \n Page count:         {pages} \n Section count:      {sections} \n Test count:         {tests}\
                       '''.format(actionGroup=actionGroupsCount,
@@ -108,53 +81,59 @@ elif (whatDoYouWantToDoAnswers["user_action"] == "list"):
                                  tests=testsCount)
             print (message)
     elif (whatDoYouWantToListAnswers["list_type"] == "duplicates"):
-        whichDuplicatesDoYouWantToSeeAnswers = prompt(questions.whichDuplicatesDoYouWantToSee)
+        whichDuplicatesDoYouWantToSeeAnswers = prompt(_questions.whichDuplicatesDoYouWantToSee)
         duplicateType = whichDuplicatesDoYouWantToSeeAnswers["duplicate_type"]
 
         if (duplicateType == "action_group"):
-            actionGroupsList = (search.searchActionGroups())["name"]
-            findAndPrintDuplicates(actionGroupsList)
+            actionGroupsList = (_search.actionGroups())["name"]
+            duplicatesList = _find.duplicates(actionGroupsList)
+            _print.duplicates(duplicatesList)
         elif (duplicateType == "data"):
-            datasList = (search.searchDatas())["name"]
-            findAndPrintDuplicates(datasList)
+            datasList = (_search.datas())["name"]
+            duplicatesList = _find.duplicates(datasList)
+            _print.duplicates(duplicatesList)
         elif (duplicateType == "metadata"):
-            metadataEntitiesList = (search.searchMetadatas())["name"]
-            findAndPrintDuplicates(metadataEntitiesList)
+            metadataEntitiesList = (_search.metadatas())["name"]
+            duplicatesList = _find.duplicates(metadataEntitiesList)
+            _print.duplicates(duplicatesList)
         elif (duplicateType == "page"):
-            pagesList = (search.searchPages())["name"]
-            findAndPrintDuplicates(pagesList)
+            pagesList = (_search.pages())["name"]
+            duplicatesList = _find.duplicates(pagesList)
+            _print.duplicates(duplicatesList)
         elif (duplicateType == "section"):
-            sectionsList = (search.searchSections())["name"]
-            findAndPrintDuplicates(sectionsList)
+            sectionsList = (_search.sections())["name"]
+            duplicatesList = _find.duplicates(sectionsList)
+            _print.duplicates(duplicatesList)
         elif (duplicateType == "test"):
-            testsList = (search.searchTests())["name"]
-            findAndPrintDuplicates(testsList)
+            testsList = (_search.tests())["name"]
+            duplicatesList = _find.duplicates(testsList)
+            _print.duplicates(duplicatesList)
         elif (duplicateType == "everything"):
-            printUtils.printTBD()
+            _print.printTBD()
             pass
 
     elif (whatDoYouWantToListAnswers["list_type"] == "names"):
-        whichListDoYouWantToSeeAnswers = prompt(questions.whichListDoYouWantToSee)
+        whichListDoYouWantToSeeAnswers = prompt(_questions.whichListDoYouWantToSee)
         listByNameType = whichListDoYouWantToSeeAnswers.get("list_name_type")
         
         if (listByNameType == "action_group"):
-            actionGroupsList = (search.searchActionGroups())["name"]
-            printUtils.printResults(actionGroupsList)
+            actionGroupsList = (_search.actionGroups())["name"]
+            _print.results(actionGroupsList)
         elif (listByNameType == "data"):
-            datasList = (search.searchDatas())["name"]
-            printUtils.printResults(datasList)
+            datasList = (_search.datas())["name"]
+            _print.results(datasList)
         elif (listByNameType == "metadata"):
-            metadataEntitiesList = (search.searchMetadatas())["name"]
-            printUtils.printResults(metadataEntitiesList)
+            metadataEntitiesList = (_search.metadatas())["name"]
+            _print.results(metadataEntitiesList)
         elif (listByNameType == "page"):
-            pagesList = (search.searchPages())["name"]
-            printUtils.printResults(pagesList)
+            pagesList = (_search.pages())["name"]
+            _print.results(pagesList)
         elif (listByNameType == "section"):
-            sectionsList = (search.searchSections())["name"]
-            printUtils.printResults(sectionsList)
+            sectionsList = (_search.sections())["name"]
+            _print.results(sectionsList)
         elif (listByNameType == "test"):
-            testsList = (search.searchTests())["name"]
-            printUtils.printResults(testsList)
+            testsList = (_search.tests())["name"]
+            _print.results(testsList)
         elif (listByNameType == "everything"):
-            printUtils.printTBD()
+            _print.printTBD()
             pass
