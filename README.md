@@ -8,6 +8,11 @@
 
 ## Dependencies
 * Python 3
+    * [Python 3](https://www.python.org/download/releases/3.0/)
+        * ```brew install python3```
+* Python 3 Modules:
+    * [PyInquirer](https://github.com/CITGuru/PyInquirer)
+        * ```pip3 install PyInquirer```
 * Cloned Magento repo (i.e.):
     * [Magento 2 CE](https://github.com/magento/magento2ce.git)
     * [Magento 2 EE](https://github.com/magento/magento2ee)
@@ -22,12 +27,16 @@
     ```
 
 ## Running
-```
-cd [MAGENTO_REPO]
-python3 [MFTF_CLI_UTILITIES_DIRECTORY]/mftfCli.py
-```
+1. CD to a Magento repo:
+    ```
+    cd [MAGENTO_REPO]
+    ```
+2. Run the MFTF-Tools:
+    ```
+    python3 [MFTF_CLI_UTILITIES_DIRECTORY]/mftf-tools.py
+    ```
 
-## Known Issues
+### Known Issues
 1. The Search functionality is case-sensitive currently.
 2. The Search functions for all "Everything" items are not complete at this time.
 3. ~~The Search functions for all "Metadata" items are not complete at this time.~~ (FIXED)
