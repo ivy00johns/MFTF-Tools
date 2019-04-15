@@ -1,7 +1,7 @@
-# MFTF-CLI-Utilities
+# MFTF-Tools
 
 ## Description
-1. Prototype of my custom MFTF CLI utilities.
+1. Welcome to the *Prototype* version of my **personal and custom** MFTF CLI utilities.
 2. PLEASE NOTE: 
     * This is my 1st Python project so I apologize in advance for any horrendous code that you may find.
     * This is a WIP with a lot of improvements planend.
