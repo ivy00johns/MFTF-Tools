@@ -65,5 +65,5 @@
 10. ~~Rename the Utils to make them less redundent.~~ (DONE)
 11. Add addtional message wrappers (i.e. "Start Of"/"End Of"/"Counts").
 12. Add option for displaying XML file pathes.
-13. Add #!/bin/python3 to scripts.
+13. ~~Add ```#!/usr/bin/env python3``` to scripts.~~
 14. Try to make compatible with python 2.

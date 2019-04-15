@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from examples import custom_style_2
 from PyInquirer import prompt, print_json
 from Utils import _print

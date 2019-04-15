@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import importlib
 import os
 from glob import glob

@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 from __future__ import print_function, unicode_literals
 from PyInquirer import style_from_dict, Token, prompt, print_json, Separator
 
