@@ -48,25 +48,19 @@
 ----
 
 ### Known Issues
-1. ~~The Search functionality is case-sensitive currently.~~ (FIXED)
 2. The Search functions for all "Everything" items are not complete at this time.
-3. ~~The Search functions for all "Metadata" items are not complete at this time.~~ (FIXED)
 
-### TODO
+### TODO Items
 1. Add Progress bars.
-2. ~~Add counters to the "List Duplicate" functions.~~ (ADDED)
 3. Add support for CLI flags.
-4. ~~Add "keys" to the Question options.~~ (ADDED)
 5. Add "element" search functions.
 6. Add Unit Tests.
 7. Add Progress Bars.
 8. Add "Display" specific node.
 9. Add "Open in Editor":
     * Nano, eMac, Sublime, PHPStorm, VS Code, etc...
-10. ~~Rename the Utils to make them less redundent.~~ (DONE)
 11. Add addtional message wrappers (i.e. "Start Of"/"End Of"/"Counts").
 12. Add option for displaying XML file pathes.
-13. ~~Add ```#!/usr/bin/env python3``` to scripts.~~
 14. Try to make compatible with python 2.
 15. Disable "Everything" only in areas where it's not availabe.
 16. Add "File Path" search functions:
@@ -84,3 +78,15 @@
     * Full File Path - `print`
     * Relative File Path - `print`
 21. Add "exit" step to all Script steps.
+
+----
+
+### COMPLETED - Known Issues
+1. ~~The Search functionality is case-sensitive currently.~~ (FIXED)
+3. ~~The Search functions for all "Metadata" items are not complete at this time.~~ (FIXED)
+
+### COMPLETED - TODO Items
+2. ~~Add counters to the "List Duplicate" functions.~~ (ADDED)
+4. ~~Add "keys" to the Question options.~~ (ADDED)
+10. ~~Rename the Utils to make them less redundent.~~ (DONE)
+13. ~~Add ```#!/usr/bin/env python3``` to scripts.~~ (ADDED)
