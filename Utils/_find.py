@@ -1,7 +1,7 @@
 import collections
 from collections import Counter
 
-def findDuplicates(listOfItems):
+def duplicates(listOfItems):
     nodeCounts = collections.Counter(listOfItems)
     duplicatesList = []
 

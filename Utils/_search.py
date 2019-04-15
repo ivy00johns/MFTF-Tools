@@ -1,5 +1,5 @@
 import xml.dom.minidom
-from Utils import xmlCrawlers
+from Utils import _xmlCrawlers
 
 def fullSearchResultsByAttributes(filesList, mainNode, entities):
     entityContents = {}
@@ -37,35 +37,36 @@ def searchFullSearchResultsByAttributes(fullSearchResults, entities, searchTerm)
     
     return finalResults
 
-def searchActionGroups():
-    actionGroupFiles = xmlCrawlers.crawlForActionGroupXmlFiles()
+def actionGroups():
+    actionGroupFiles = _xmlCrawlers.crawlForActionGroupXmlFiles()
+
     results = fullSearchResultsByAttributes(actionGroupFiles, "actionGroup", ["name", "extends"]) 
     return results
 
-def searchDatas():
-    dataFiles = xmlCrawlers.crawlForDataXmlFiles()
+def datas():
+    dataFiles = _xmlCrawlers.crawlForDataXmlFiles()
     results = fullSearchResultsByAttributes(dataFiles, "entity", ["name", "extends"])
     return results
 
-def searchMetadatas():
-    metadataFiles = xmlCrawlers.crawlForMetadataXmlFiles()
+def metadatas():
+    metadataFiles = _xmlCrawlers.crawlForMetadataXmlFiles()
     results = fullSearchResultsByAttributes(metadataFiles, "operation", ["name", "url"])
     return results
 
-def searchPages():
-    pageFiles = xmlCrawlers.crawlForPageXmlFiles()
+def pages():
+    pageFiles = _xmlCrawlers.crawlForPageXmlFiles()
     results = fullSearchResultsByAttributes(pageFiles, "page", ["name", "url", "extends"])
     return results
 
-def searchSections():
-    sectionFiles = xmlCrawlers.crawlForSectionXmlFiles()
+def sections():
+    sectionFiles = _xmlCrawlers.crawlForSectionXmlFiles()
     results = fullSearchResultsByAttributes(sectionFiles, "section", ["name", "extends"])
     return results
 
-def searchTests():
-    testFiles = xmlCrawlers.crawlForTestXmlFiles()
+def tests():
+    testFiles = _xmlCrawlers.crawlForTestXmlFiles()
     results = fullSearchResultsByAttributes(testFiles, "test", ["name", "extends"])
     return results
 
-def searchEverything():
+def everything():
     pass
