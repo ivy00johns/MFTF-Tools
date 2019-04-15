@@ -6,6 +6,7 @@ from Utils import _find
 from Utils import _print
 from Utils import _search
 from Utils import _questions
+import sys
 
 # File Path Variables
 actionGroupFiles = []
@@ -19,6 +20,11 @@ testFiles        = []
 ###############################
 ## Ask the Starter Question ##
 whatDoYouWantToDoAnswers = prompt(_questions.whatDoYouWantToDo)
+
+# Exit Program
+def exitProgram():
+    print ("Exited program per User Request.")
+    sys.exit()
 
 # Branching logic based on the answer to the Starter Question.
 if (whatDoYouWantToDoAnswers["user_action"] == "search"):
@@ -39,7 +45,7 @@ if (whatDoYouWantToDoAnswers["user_action"] == "search"):
         _print.askTheQuestionPrintTheAnswers(_questions.whichTestAttributes)
     elif (entityType == "everything"):
         _print.printTBD()
-        pass
+        _search.exitProgram()
 
 elif (whatDoYouWantToDoAnswers["user_action"] == "list"):
     whatDoYouWantToListAnswers = prompt(_questions.whatDoYouWantToList)
@@ -112,7 +118,7 @@ elif (whatDoYouWantToDoAnswers["user_action"] == "list"):
             _print.duplicates(duplicatesList)
         elif (duplicateType == "everything"):
             _print.printTBD()
-            pass
+            _search.exitProgram()
 
     elif (whatDoYouWantToListAnswers["list_type"] == "names"):
         whichListDoYouWantToSeeAnswers = prompt(_questions.whichListDoYouWantToSee)
@@ -138,4 +144,4 @@ elif (whatDoYouWantToDoAnswers["user_action"] == "list"):
             _print.results(testsList)
         elif (listByNameType == "everything"):
             _print.printTBD()
-            pass
+            _search.exitProgram()
