@@ -48,7 +48,7 @@
 ----
 
 ### Known Issues
-1. The Search functionality is case-sensitive currently.
+1. ~~The Search functionality is case-sensitive currently.~~ (FIXED)
 2. The Search functions for all "Everything" items are not complete at this time.
 3. ~~The Search functions for all "Metadata" items are not complete at this time.~~ (FIXED)
 
@@ -67,3 +67,4 @@
 12. Add option for displaying XML file pathes.
 13. ~~Add ```#!/usr/bin/env python3``` to scripts.~~
 14. Try to make compatible with python 2.
+15. Disable "Everything" only in areas where it's not availabe.

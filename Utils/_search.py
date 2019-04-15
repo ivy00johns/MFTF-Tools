@@ -34,7 +34,7 @@ def searchFullSearchResultsByAttributes(fullSearchResults, entities, searchTerm)
         for fullSearchResult in fullSearchResults:
             if (entity == fullSearchResult):
                 listOfResults = fullSearchResults[entity]
-                filteredResults = [i for i in listOfResults if searchTerm in i]
+                filteredResults = [i for i in listOfResults if searchTerm.lower() in i.lower()]
                 finalResults[entity] = filteredResults
     
     return finalResults
