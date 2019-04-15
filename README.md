@@ -62,8 +62,8 @@
 7. Add Progress Bars.
 8. Add "Display" specific node.
 9. Add "Open in Editor".
-10. Rename the Utils to make them less redundent.
+10. ~~Rename the Utils to make them less redundent.~~ (DONE)
 11. Add addtional message wrappers (i.e. "Start Of"/"End Of"/"Counts").
-12. Add option for displaying XML file pathes. 
+12. Add option for displaying XML file pathes.
 13. Add #!/bin/python3 to scripts.
 14. Try to make compatible with python 2.
