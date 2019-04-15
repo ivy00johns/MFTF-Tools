@@ -39,3 +39,4 @@ python3 [MFTF_CLI_UTILITIES_DIRECTORY]/mftfCli.py
 4. Add "keys" to the Question options.
 5. Add "element" search functions.
 6. Add Unit Tests.
+7. Add Progress Bars.
