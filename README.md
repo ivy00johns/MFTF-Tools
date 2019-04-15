@@ -83,3 +83,4 @@
     * Full XML Node - `print`
     * Full File Path - `print`
     * Relative File Path - `print`
+21. Add "exit" step to all Script steps.
