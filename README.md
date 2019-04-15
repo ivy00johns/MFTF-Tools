@@ -6,6 +6,8 @@
     * This is my 1st Python project so I apologize in advance for any horrendous code that you may find.
     * This is a WIP with a lot of improvements planend.
 
+----
+
 ## Dependencies
 * Python 3
     * [Python 3](https://www.python.org/download/releases/3.0/)
@@ -19,6 +21,7 @@
     * [Magento 2 B2B](https://github.com/magento/magento2b2b)
     * [MSI](https://github.com/magento-engcom/msi)
 
+----
 
 ## Setup
 1. Clone the "MFTF-CLI-Utilities" repo:
@@ -26,7 +29,7 @@
     git clone https://github.com/ivy00johns/MFTF-CLI-Utilities.git
     ```
 
-## Running
+## Running Tools
 1. CD to a Magento repo:
     ```
     cd [MAGENTO_REPO]
@@ -35,6 +38,14 @@
     ```
     python3 [MFTF_CLI_UTILITIES_DIRECTORY]/mftf-tools.py
     ```
+
+----
+
+## Examples
+![Question #1](https://github.com/ivy00johns/MFTF-CLI-Utilities/blob/master/Images/question-1.png?raw=true)
+![Question #2](https://github.com/ivy00johns/MFTF-CLI-Utilities/blob/master/Images/question-2.png?raw=true)
+
+----
 
 ### Known Issues
 1. The Search functionality is case-sensitive currently.
