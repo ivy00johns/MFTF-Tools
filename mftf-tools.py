@@ -27,17 +27,17 @@ if (whatDoYouWantToDoAnswers["user_action"] == "search"):
     entityType = whatAreYouSearchingForAnswers["searching_for"]
 
     if (entityType == "action_group"):
-        _print.askTheQuestionPrintTheAnswers(_questions.whichActionGroupAttributes)
+        _print.askTheQuestionPrintTheAnswers(_questions.whichActionGroupAttributes, "action_group")
     elif (entityType == "data"):
-        _print.askTheQuestionPrintTheAnswers(_questions.whichDataEntityAttributes)
+        _print.askTheQuestionPrintTheAnswers(_questions.whichDataEntityAttributes, "data")
     elif (entityType == "metadata"):
-        _print.askTheQuestionPrintTheAnswers(_questions.whichMetadataAttributes)
+        _print.askTheQuestionPrintTheAnswers(_questions.whichMetadataAttributes, "metadata")
     elif (entityType == "page"):
-        _print.askTheQuestionPrintTheAnswers(_questions.whichPageAttributes)
+        _print.askTheQuestionPrintTheAnswers(_questions.whichPageAttributes, "page")
     elif (entityType == "section"):
-        _print.askTheQuestionPrintTheAnswers(_questions.whichSectionAttributes)
+        _print.askTheQuestionPrintTheAnswers(_questions.whichSectionAttributes, "section")
     elif (entityType == "test"):
-        _print.askTheQuestionPrintTheAnswers(_questions.whichTestAttributes)
+        _print.askTheQuestionPrintTheAnswers(_questions.whichTestAttributes, "test")
     elif (entityType == "everything"):
         _print.printTBD()
         _exit.program()
