@@ -1,7 +1,7 @@
 # MFTF-Tools
 
 ## Description
-1. Welcome to the *Prototype* version of my **personal and custom** MFTF CLI utilities.
+1. Welcome to the *Prototype* version of my **personal and custom** MFTF CLI Tools.
 2. PLEASE NOTE: 
     * This is my 1st Python project so I apologize in advance for any horrendous code that you may find.
     * This is a WIP with a lot of improvements planend.
@@ -26,7 +26,7 @@
 ## Setup
 1. Clone the "MFTF-CLI-Utilities" repo:
     ```
-    git clone https://github.com/ivy00johns/MFTF-CLI-Utilities.git
+    git clone https://github.com/ivy00johns/MFTF-Tools.git
     ```
 
 ## Running Tools
@@ -42,8 +42,8 @@
 ----
 
 ## Examples
-![Question #1](https://github.com/ivy00johns/MFTF-CLI-Utilities/blob/master/Images/question-1.png?raw=true)
-![Question #2](https://github.com/ivy00johns/MFTF-CLI-Utilities/blob/master/Images/question-2.png?raw=true)
+![Question #1](https://github.com/ivy00johns/MFTF-Tools/blob/master/Images/question-1.png?raw=true)
+![Question #2](https://github.com/ivy00johns/MFTF-Tools/blob/master/Images/question-2.png?raw=true)
 
 ----
 
