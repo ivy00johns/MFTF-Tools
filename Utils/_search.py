@@ -41,7 +41,6 @@ def searchFullSearchResultsByAttributes(fullSearchResults, entities, searchTerm)
 
 def actionGroups():
     actionGroupFiles = _xmlCrawlers.crawlForActionGroupXmlFiles()
-
     results = fullSearchResultsByAttributes(actionGroupFiles, "actionGroup", ["name", "extends"]) 
     return results
 
@@ -72,3 +71,19 @@ def tests():
 
 def everything():
     pass
+
+def fullXmlSearchResults(filesList, mainNode):
+    xmlEntityNodes = {}
+
+    for fileName in filesList:
+        currentNode = xml.dom.minidom.parse(fileName)
+        entityNodes = currentNode.getElementsByTagName(mainNode)
+        for entityNode in entityNodes:
+            xmlEntityNodes[fileName] = entityNode.toprettyxml()
+    
+    return xmlEntityNodes
+
+def fullActionGroupsXml():
+    actionGroupFiles = _xmlCrawlers.crawlForActionGroupXmlFiles()
+    results = fullXmlSearchResults(actionGroupFiles, "actionGroup")
+    return results

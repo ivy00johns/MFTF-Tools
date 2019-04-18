@@ -140,3 +140,29 @@ elif (whatDoYouWantToDoAnswers["user_action"] == "list"):
         elif (listByNameType == "everything"):
             _print.printTBD()
             _exit.program()
+elif (whatDoYouWantToDoAnswers["user_action"] == "print"):
+    whatAreYouSearchingForAnswers = prompt(_questions.whatAreYouSearchingFor)
+    entityType = whatAreYouSearchingForAnswers["searching_for"]
+
+    if (entityType == "action_group"):
+        # _print.askTheQuestionPrintTheAnswers(_questions.whichActionGroupAttributes)
+        pass
+    elif (entityType == "data"):
+        # _print.askTheQuestionPrintTheAnswers(_questions.whichDataEntityAttributes)
+        pass
+    elif (entityType == "metadata"):
+        # _print.askTheQuestionPrintTheAnswers(_questions.whichMetadataAttributes)
+        pass
+    elif (entityType == "page"):
+        # _print.askTheQuestionPrintTheAnswers(_questions.whichPageAttributes)
+        pass
+    elif (entityType == "section"):
+        # _print.askTheQuestionPrintTheAnswers(_questions.whichSectionAttributes)
+        pass
+    elif (entityType == "test"):
+        # _print.askTheQuestionPrintTheAnswers(_questions.whichTestAttributes)
+        pass
+    elif (entityType == "everything"):
+        _print.printTBD()
+        _exit.program()
+    pass

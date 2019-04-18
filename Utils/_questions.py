@@ -57,6 +57,11 @@ whatDoYouWantToDo = {
             "key": "l",
             "name": "List",
             "value": "list"
+        },
+        {
+            "key": "p",
+            "name": "Print",
+            "value": "print"
         }
     ]
 }
@@ -332,4 +337,9 @@ whichDuplicatesDoYouWantToSee = {
     "name": "duplicate_type",
     "message": "What do you want to see duplicates of?",
     "choices": fullListOfEntities
+}
+
+# Print related questions
+whatDoYouWantToPrint = {
+    
 }
