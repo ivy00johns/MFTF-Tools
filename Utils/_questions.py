@@ -341,5 +341,19 @@ whichDuplicatesDoYouWantToSee = {
 
 # Print related questions
 whatDoYouWantToPrint = {
-    
+    "type": "list",
+    "name": "print_type",
+    "message": "What do you want to print?",
+    "choices": [
+        {
+            "key": "n",
+            "name": "Print XML Node",
+            "value": "xml_node"
+        },
+        {
+            "key": "f",
+            "name": "Print File Path",
+            "value": "xml_path"
+        }
+    ]
 }

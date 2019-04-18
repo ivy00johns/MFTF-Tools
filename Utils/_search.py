@@ -3,6 +3,7 @@
 import xml.dom.minidom
 from Utils import _xmlCrawlers
 
+# Partial XML Search By Attribute Name Functions 
 def fullSearchResultsByAttributes(filesList, mainNode, entities):
     entityContents = {}
 
@@ -72,6 +73,7 @@ def tests():
 def everything():
     pass
 
+# Full XML Search Result Functions
 def fullXmlSearchResults(filesList, mainNode):
     xmlEntityNodes = {}
 
@@ -87,3 +89,6 @@ def fullActionGroupsXml():
     actionGroupFiles = _xmlCrawlers.crawlForActionGroupXmlFiles()
     results = fullXmlSearchResults(actionGroupFiles, "actionGroup")
     return results
+
+def searchXmlBasedOnFileName(fullResults, fileName):
+    pass
