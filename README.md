@@ -44,6 +44,9 @@
 ## Examples
 ![Question #1](https://github.com/ivy00johns/MFTF-Tools/blob/master/Images/question-1.png?raw=true)
 ![Question #2](https://github.com/ivy00johns/MFTF-Tools/blob/master/Images/question-2.png?raw=true)
+![Question #3](https://github.com/ivy00johns/MFTF-Tools/blob/master/Images/question-3.png?raw=true)
+![Question #4](https://github.com/ivy00johns/MFTF-Tools/blob/master/Images/question-4.png?raw=true)
+![Question #5](https://github.com/ivy00johns/MFTF-Tools/blob/master/Images/question-5.png?raw=true)
 
 ----
 
@@ -78,6 +81,8 @@
     * Full File Path - `print`
     * Relative File Path - `print`
 21. Add "exit" step to all Script steps.
+22. Add Search for "Selector" => Used in "Action Groups".
+23. Add proper list "Results" feature. 
 
 ----
 
