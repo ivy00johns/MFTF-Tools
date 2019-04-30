@@ -82,7 +82,10 @@
     * Relative File Path - `print`
 21. Add "exit" step to all Script steps.
 22. Add Search for "Selector" => Used in "Action Groups".
-23. Add proper list "Results" feature. 
+23. Add proper list "Results" feature.
+24. Counts of Nodes per Module.
+25. Display the # of modules.
+26. Add list "Suites" function.
 
 ----
 
