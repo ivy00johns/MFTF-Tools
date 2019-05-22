@@ -58,7 +58,6 @@
 3. Add support for CLI flags.
 5. Add "element" search functions.
 6. Add Unit Tests.
-7. Add Progress Bars.
 8. Add "Display" specific node.
 9. Add "Open in Editor":
     * Nano, eMac, Sublime, PHPStorm, VS Code, etc...
@@ -86,6 +85,10 @@
 24. Counts of Nodes per Module.
 25. Display the # of modules.
 26. Add list "Suites" function.
+27. Add list of Entities per module.
+28. Add "Download Magento Repos" function.
+    * Update Repos.
+    * Get all Repo counts.
 
 ----
 
