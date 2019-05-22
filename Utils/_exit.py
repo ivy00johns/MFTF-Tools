@@ -4,5 +4,5 @@ import sys
 
 # Exit Program
 def program():
-    print ("Exited program per User Request.")
+    print ("Program Exited")
     sys.exit()
